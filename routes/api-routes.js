@@ -19,13 +19,14 @@ app.get("/scrape", function(req, res) {
 
         //Now, we grab every ...
         //$("latestScrollItems item rlLine col-4 h3").each(function(i, element) {
-        $("div.col-4 h3").each(function(i, element) {
+        $("div.col-4").each(function(i, element) {
           
           let articleItem = {};
 
           //grabbing text and href of every link
-          articleItem.title = $(this).children("a").text();
-          articleItem.link = $(this).children("a").attr("href");
+          articleItem.title = $(this).children("h3").children("a").text();
+          articleItem.link = $(this).children("h3").children("a").attr("href");
+          articleItem.text = $(this).children("p").children("a").text();
 
           articlesArr.push(articleItem);
 
@@ -51,7 +52,7 @@ app.get("/scrape", function(req, res) {
           articles: articlesArr
         }
 
-        var testObj = {message: 'Handlebar is working in api-routes...'}
+        //var testObj = {message: 'Handlebar is working in api-routes...'}
 
 
         res.render("index", hbsObj);

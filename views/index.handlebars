@@ -11,7 +11,7 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-            <ul class="navbar-nav mr-auto">  <!-- put the navbar items inside yhis unorder list with the class nav-item -->
+            <ul class="navbar-nav mr-auto">  <!-- put the navbar items inside this unorder list with the class nav-item -->
 
                 <li class="nav-item active">
                     <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
@@ -30,7 +30,7 @@
             <!--
             <button class="btn btn-primary btn-lg" id="btnScrape">SCRAPE NEW ARTICLES!</button>
             -->
-            
+
         </div> <!-- end of collapase navbar-collapse -->
     </nav>
 
@@ -41,14 +41,28 @@
         </div>
     </div>
 
-    <div id="handlebar-test">
-        <h2>{{message}}</h2>
+    <div id="articles-list">
+
+        {{!-- <h3>{{message}}</h3>
 
         <div id="articles-list">
         {{#each articles}}
             <p>{{@index}} {{title}}</p>
         {{/each}}
+        </div> --}}
+
+        {{#each articles}}
+        <div class="card">
+            <div class="card-header">
+                <span class="badge badge-light">{{@index}}</span> {{title}}
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">{{title}}</h5>
+                <p class="card-text">{{text}}</p>
+                <a href="https://www.cnet.com"+{{link}} class="btn btn-primary">Go to article</a>
+            </div>
         </div>
+        {{/each}}
 
     </div>
 
