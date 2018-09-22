@@ -41,7 +41,7 @@ app.get("/scrape", function(req, res) {
               return res.json(err);
             }); */
 
-        });
+        }); //end of $
 
         // If everything went ok, send handle bar object to user
         console.log("Rendering index...");
@@ -51,12 +51,10 @@ app.get("/scrape", function(req, res) {
           articles: articlesArr
         }
 
-        var testObj = {test_message: 'Handlebar is working...'}
+        var testObj = {message: 'Handlebar is working in api-routes...'}
 
-        console.log(testObj);
-        console.log('------------------------------------------------------------------');
 
-        res.render("index", testObj);
+        res.render("index", hbsObj);
 
 
     });

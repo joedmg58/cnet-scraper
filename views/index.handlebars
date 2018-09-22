@@ -20,11 +20,17 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/saved">Saved Articles</a>
                 </li>
+
+                <li class="nav-item">
+                    <a class="btn btn-primary" href="/scrape">SCRAPE NEW ARTICLES !</a>
+                </li>
       
             </ul>
 
+            <!--
             <button class="btn btn-primary btn-lg" id="btnScrape">SCRAPE NEW ARTICLES!</button>
-    
+            -->
+            
         </div> <!-- end of collapase navbar-collapse -->
     </nav>
 
@@ -35,12 +41,15 @@
         </div>
     </div>
 
-    <div>
-        <h2>{{test_message}}</h2>
+    <div id="handlebar-test">
+        <h2>{{message}}</h2>
 
+        <div id="articles-list">
         {{#each articles}}
             <p>{{@index}} {{title}}</p>
         {{/each}}
+        </div>
+
     </div>
 
 </div>
