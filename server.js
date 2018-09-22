@@ -12,7 +12,7 @@ var mongoose = require("mongoose"); //mongoose
 var request = require("request"); //simplified HTTP client (scraping tool)
 var cheerio = require("cheerio"); //like JQuery for server (scraping tool)
 
-var logger = require("morgan"); //for login requests
+//var logger = require("morgan"); //for login requests
 
 // end of external module required ----------------------------------------
 
@@ -29,7 +29,7 @@ var app = express();
 
 
 // Use morgan logger for logging requests
-app.use(logger("dev"));
+//app.use(logger("dev"));
 
 // Use body-parser for handling form submissions
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -43,6 +43,10 @@ app.set("view engine", "handlebars");
 
 // Connect to the Mongo DB
 mongoose.connect("mongodb://localhost/" + dbName);
+
+// Routes
+require("./routes/api-routes")(app);
+require("./routes/html-routes")(app);
 
 // Start the server
 app.listen(PORT, function() {

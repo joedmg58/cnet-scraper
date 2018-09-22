@@ -1,41 +1,68 @@
-// Routes
+var request = require("request"); //simplified HTTP client (scraping tool)
+var cheerio = require("cheerio"); //like JQuery for server (scraping tool)
+var db = require("../models");
 
-// A GET route for scraping the echoJS website
+module.exports = function(app) {
+
+// A GET route for scraping the cnet.com site
 app.get("/scrape", function(req, res) {
     // First, we grab the body of the html with request
-    axios.get("http://www.echojs.com/").then(function(response) {
-      // Then, we load that into cheerio and save it to $ for a shorthand selector
-      var $ = cheerio.load(response.data);
-  
-      // Now, we grab every h2 within an article tag, and do the following:
-      $("article h2").each(function(i, element) {
-        // Save an empty result object
-        var result = {};
-  
-        // Add the text and href of every link, and save them as properties of the result object
-        result.title = $(this)
-          .children("a")
-          .text();
-        result.link = $(this)
-          .children("a")
-          .attr("href");
-  
-        // Create a new Article using the `result` object built from scraping
-        db.Article.create(result)
-          .then(function(dbArticle) {
-            // View the added result in the console
-            console.log(dbArticle);
-          })
-          .catch(function(err) {
-            // If an error occurred, send it to the client
-            return res.json(err);
-          });
-      });
-  
-      // If we were able to successfully scrape and save an Article, send a message to the client
-      res.send("Scrape Complete");
+    request("https://www.cnet.com/", function(error, response, body) {
+      console.log('error: ', error);
+      console.log('statusCode: ', response && response.statusCode);
+      //console.log(body);
+
+        var $ = cheerio.load(body);
+
+        //create empty result object
+        var articlesArr = [];
+
+        //Now, we grab every ...
+        //$("latestScrollItems item rlLine col-4 h3").each(function(i, element) {
+        $("div.col-4 h3").each(function(i, element) {
+          
+          let articleItem = {};
+
+          //grabbing text and href of every link
+          articleItem.title = $(this).children("a").text();
+          articleItem.link = $(this).children("a").attr("href");
+
+          articlesArr.push(articleItem);
+
+          //console.log(articleItem);
+          //console.log('------------------------------------------------------------------');
+
+          /* //create a new article in mongoDB
+          db.Article.create(result)
+            .then(function(collArticle) {
+              console.log(collArticle);
+            })
+            .catch(function(err) {
+              return res.json(err);
+            }); */
+
+        });
+
+        // If everything went ok, send handle bar object to user
+        console.log("Rendering index...");
+        console.log('------------------------------------------------------------------');
+
+        var hbsObj = {
+          articles: articlesArr
+        }
+
+        var testObj = {test_message: 'Handlebar is working...'}
+
+        console.log(testObj);
+        console.log('------------------------------------------------------------------');
+
+        res.render("index", testObj);
+
+
     });
+
   });
+
   
   // Route for getting all Articles from the db
   app.get("/articles", function(req, res) {
@@ -59,3 +86,5 @@ app.get("/scrape", function(req, res) {
     // then find an article from the req.params.id
     // and update it's "note" property with the _id of the new note
   });
+
+}

@@ -1,0 +1,46 @@
+<div class="container">
+
+    <!-- Nav Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+        <a class="navbar-brand" href="/">c|net Scraper</a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+            <ul class="navbar-nav mr-auto">  <!-- put the navbar items inside yhis unorder list with the class nav-item -->
+
+                <li class="nav-item active">
+                    <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/saved">Saved Articles</a>
+                </li>
+      
+            </ul>
+
+            <button class="btn btn-primary btn-lg" id="btnScrape">SCRAPE NEW ARTICLES!</button>
+    
+        </div> <!-- end of collapase navbar-collapse -->
+    </nav>
+
+    <!-- Jumbotron -->
+    <div class="jumbotron jumbotron-fluid bg-info">
+        <div class="container">
+            <h1 class="display-4 text-center text-light">Mongo Scraper</h1>
+        </div>
+    </div>
+
+    <div>
+        <h2>{{test_message}}</h2>
+
+        {{#each articles}}
+            <p>{{@index}} {{title}}</p>
+        {{/each}}
+    </div>
+
+</div>
