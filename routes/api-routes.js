@@ -25,7 +25,7 @@ app.get("/scrape", function(req, res) {
 
           //grabbing text and href of every link
           articleItem.title = $(this).children("h3").children("a").text();
-          articleItem.link = $(this).children("h3").children("a").attr("href");
+          articleItem.link = "https://www.cnet.com" + $(this).children("h3").children("a").attr("href");
           articleItem.text = $(this).children("p").children("a").text();
 
           articlesArr.push(articleItem);

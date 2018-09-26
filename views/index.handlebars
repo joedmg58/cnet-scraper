@@ -38,32 +38,32 @@
     <div class="jumbotron jumbotron-fluid bg-info">
         <div class="container">
             <h1 class="display-4 text-center text-light">Mongo Scraper</h1>
+            <h2 class="display-6 text-center text-light">c|net edition</h2>
         </div>
     </div>
 
     <div id="articles-list">
 
-        {{!-- <h3>{{message}}</h3>
-
-        <div id="articles-list">
-        {{#each articles}}
-            <p>{{@index}} {{title}}</p>
-        {{/each}}
-        </div> --}}
-
         {{#each articles}}
         <div class="card">
             <div class="card-header">
-                <span class="badge badge-light">{{@index}}</span> {{title}}
+                <h5 class="card-title"> {{title}} </h5>
             </div>
             <div class="card-body">
-                <h5 class="card-title">{{title}}</h5>
                 <p class="card-text">{{text}}</p>
-                <a href="https://www.cnet.com"+{{link}} class="btn btn-primary">Go to article</a>
+                <a href={{link}} class="btn btn-primary">Go to article</a>
+                <button name="btnSave" 
+                        class="btn btn-danger" 
+                        data-title="{{title}}" 
+                        data-text="{{text}}"
+                        data-link="{{link}}"
+                        >
+                        Save article
+                </button>
             </div>
         </div>
         {{/each}}
 
-    </div>
+    </div> <!-- end of articles-list -->
 
 </div>
