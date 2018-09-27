@@ -30,17 +30,8 @@ app.get("/scrape", function(req, res) {
 
           articlesArr.push(articleItem);
 
-          //console.log(articleItem);
-          //console.log('------------------------------------------------------------------');
 
-          /* //create a new article in mongoDB
-          db.Article.create(result)
-            .then(function(collArticle) {
-              console.log(collArticle);
-            })
-            .catch(function(err) {
-              return res.json(err);
-            }); */
+          
 
         }); //end of $
 
@@ -65,25 +56,19 @@ app.get("/scrape", function(req, res) {
   
   // Route for getting all Articles from the db
   app.get("/articles", function(req, res) {
-    // TODO: Finish the route so it grabs all of the articles
   });
   
-  // Route for grabbing a specific Article by id, populate it with it's note
-  app.get("/articles/:id", function(req, res) {
-    // TODO
-    // ====
-    // Finish the route so it finds one article using the req.params.id,
-    // and run the populate method with "note",
-    // then responds with the article with the note included
-  });
   
   // Route for saving/updating an Article's associated Note
-  app.post("/articles/:id", function(req, res) {
-    // TODO
-    // ====
-    // save the new note that gets posted to the Notes collection
-    // then find an article from the req.params.id
-    // and update it's "note" property with the _id of the new note
+  app.post("/articles", function(req, res) {
+    //create a new article in mongoDB
+    db.Article.create(req.data)
+      .then(function(collArticle) {
+        console.log(collArticle);
+      })
+      .catch(function(err) {
+        return res.json(err);
+      });
   });
 
 }

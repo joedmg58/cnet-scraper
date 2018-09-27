@@ -47,16 +47,16 @@
         {{#each articles}}
         <div class="card">
             <div class="card-header">
-                <h5 class="card-title"> {{title}} </h5>
+                <h5 class="card-title"> {{title}} <span id="span{{@index}}" class="badge badge-pill badge-danger">saved</span></h5>
             </div>
             <div class="card-body">
                 <p class="card-text">{{text}}</p>
                 <a href={{link}} class="btn btn-primary">Go to article</a>
-                <button name="btnSave" 
-                        class="btn btn-danger" 
+                <button class="btn btn-danger btnSaveArticle" 
                         data-title="{{title}}" 
                         data-text="{{text}}"
                         data-link="{{link}}"
+                        data-index={{@index}}
                         >
                         Save article
                 </button>

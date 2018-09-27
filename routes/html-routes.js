@@ -10,4 +10,9 @@ module.exports = function(app) {
         res.render( 'index', {});   // testObj for testing handlebars
     });
 
+    // Load saved article page
+    app.get("/saved", function(req, res) {
+        res.render( 'saved', {});
+    });
+
 }
